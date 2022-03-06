@@ -1,0 +1,50 @@
+{
+    "name": "autoAddBothBuddy",
+    "version": "1.0",
+    "description": " add buddy",
+    "manifest_version": 2,
+    "permissions": [
+    "tabs",
+    "notifications",
+    "https://section.blog.naver.com/*",
+    "https://blog.naver.com/*"
+],
+    "browser_action": {
+    "default_popup": "autoAddBothBuddy.html",
+    "default_icon": "buddy.png"
+},
+    "content_scripts": [
+    {
+        "all_frames": true,
+        "js": ["blog_home.js"],
+        "css": [],
+        "matches": ["https://section.blog.naver.com/*"],
+        "run_at": "document_end"
+    },
+
+    {
+        "all_frames": true,
+        "js": ["visit_blog.js"],
+        "css": [],
+        "matches": ["https://blog.naver.com/*"],
+        "exclude_globs": ["*BuddyAdd*"],
+        "run_at": "document_end"
+    },
+
+    {
+        "all_frames": true,
+        "js": ["step1.js"],
+        "css": [],
+        "matches": ["https://blog.naver.com/BuddyAdd.naver?blogId=*"],
+        "run_at": "document_end"
+    },
+
+    {
+        "all_frames": true,
+        "js": ["step2.js"],
+        "css": [],
+        "matches": ["https://blog.naver.com/BuddyAdd.naver"],
+        "run_at": "document_end"
+    }
+]
+}
